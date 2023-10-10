@@ -1,0 +1,23 @@
+import PyPDF3
+import pyttsx3
+
+book = open('EGS002.PDF', 'rb')
+
+
+pdfRead = PyPDF3.PdfFileReader(book)
+
+# to start the reading from 1st page in the pdf
+page = pdfRead.getPage(0)
+
+
+text = {
+"This week could be pivotal for Bitcoin spot ETFs. On Friday, the SEC is set to announce its decision on the Bitcoin spot ETF filings by six heavyweight companies."
+}
+
+# reading the text
+speak = pyttsx3.init()
+voices = speak.getProperty('voices')
+speak.setProperty('voice', voices[1].id)
+speak.say(text)
+speak.save_to_file(text, 'audiobook.mp3')
+speak.runAndWait()
